@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Creative Studio — AdHarbor | 20+ Ad Templates, Exact-Size PNG Export</title>
+<meta name="description" content="Design ad creatives on a canvas: 20+ editable templates, your brand kit, your photos or free stock photos, export PNG at 1080×1080, 1080×1920, 1200×628 or 1080×1350. Free, no account.">
+<link rel="canonical" href="https://adharbor.pages.dev/creative-studio">
+<meta property="og:title" content="AdHarbor Creative Studio — Ad Templates & PNG Export">
+<meta property="og:description" content="20+ templates, brand kit, free stock photos, exact-size PNG export. Free, no account.">
+<meta property="og:url" content="https://adharbor.pages.dev/creative-studio">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d9488'/><text x='50' y='70' font-size='54' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><span class="mark">A</span> AdHarbor</a>
+    <nav class="nav-links">
+      <a href="studio.html">Studio</a>
+      <a href="creative-studio.html" class="on">Creative Studio</a>
+      <a href="brand-voice.html">Brand Voice</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <a class="btn small" href="studio.html" style="margin-left:auto">Campaign Studio</a>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <h1>Creative Studio</h1>
+  <p>Pick a template, write the words, add your photo — export a PNG at the exact size the platform wants. No AI image generation is faked here: Gemini's image models are paid-only with no free tier, so AdHarbor renders real templates with your photos and free stock photos instead.</p>
+</div>
+
+<section style="padding-top:24px">
+  <div class="wrap grid2-40">
+    <div>
+      <div class="panel">
+        <h3>1 · Size</h3>
+        <div class="size-pills" id="sizePills">
+          <span class="pill on" data-size="1080x1080"><b>Square</b> 1080×1080</span>
+          <span class="pill" data-size="1080x1920"><b>Story / Reel</b> 1080×1920</span>
+          <span class="pill" data-size="1200x628"><b>Facebook / Google</b> 1200×628</span>
+          <span class="pill" data-size="1080x1350"><b>Portrait</b> 1080×1350</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>2 · Template <span class="mini" id="tplCount"></span></h3>
+        <div class="tpl-grid" id="tplGrid"></div>
+      </div>
+
+      <div class="panel">
+        <h3>3 · Words</h3>
+        <label for="cHeadline">Headline</label>
+        <input type="text" id="cHeadline" value="20% OFF EVERYTHING">
+        <label for="cSub">Subheadline</label>
+        <input type="text" id="cSub" value="This week only — free shipping over $35">
+        <label for="cCta">Button / CTA</label>
+        <input type="text" id="cCta" value="Shop Now">
+        <label for="cBrand">Brand name on creative</label>
+        <input type="text" id="cBrand" placeholder="Your brand">
+        <div class="row">
+          <div style="flex:1"><label for="cFontSize">Headline size</label><input type="range" id="cFontSize" min="40" max="160" value="96"></div>
+          <div style="flex:1"><label for="cOverlay">Photo dim (readability)</label><input type="range" id="cOverlay" min="0" max="80" value="35"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>4 · Photo</h3>
+        <label>Upload your own product photo</label>
+        <input type="file" id="photoUpload" accept="image/*">
+        <p class="mini">Or pick a free stock photo (Unsplash):</p>
+        <div class="stock-grid" id="stockGrid"></div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn ghost small" id="clearPhotoBtn" type="button">Use template colours only</button>
+        </div>
+      </div>
+
+      <div class="panel soft">
+        <h3>5 · Brand kit</h3>
+        <p class="muted">Saved in this browser. Edit anytime — it also feeds the Campaign Studio.</p>
+        <div class="row">
+          <div style="flex:1"><label for="bkPrimary">Primary colour</label><input type="color" id="bkPrimary" value="#0d9488"></div>
+          <div style="flex:1"><label for="bkSecondary">Secondary colour</label><input type="color" id="bkSecondary" value="#0b2239"></div>
+          <div style="flex:1"><label for="bkAccent">Accent colour</label><input type="color" id="bkAccent" value="#f59e0b"></div>
+        </div>
+        <label for="bkFont">Font</label>
+        <select id="bkFont">
+          <option>Arial</option><option>Georgia</option><option>Trebuchet MS</option><option>Verdana</option><option>Impact</option><option>Courier New</option>
+        </select>
+        <label>Logo (small, PNG with transparent background works best)</label>
+        <input type="file" id="logoUpload" accept="image/*">
+        <p class="mini" id="logoStatus"></p>
+        <div class="row" style="margin-top:10px">
+          <button class="btn small" id="saveKitBtn" type="button">Save brand kit</button>
+          <button class="btn ghost small" id="useKitColorsBtn" type="button">Apply kit colours to this creative</button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel">
+        <div class="row between">
+          <h3 style="margin:0">Live preview</h3>
+          <span class="status live" id="sizeLabel">1080 × 1080</span>
+        </div>
+        <canvas id="stage" class="stage" width="1080" height="1080"></canvas>
+        <p class="mini" style="margin-top:8px">Preview is scaled to fit your screen — the exported PNG is the full size above.</p>
+        <div class="row" style="margin-top:12px">
+          <button class="btn" id="exportBtn" type="button">Download PNG</button>
+          <button class="btn ghost" id="saveCalBtn" type="button">Save to calendar</button>
+          <button class="btn ghost" id="copyCapBtn" type="button">Copy caption from Studio kit</button>
+        </div>
+        <p class="mini" id="exportStatus" style="margin-top:8px"></p>
+      </div>
+      <div class="note"><b>Honest note:</b> AdHarbor does not generate AI images — Gemini's image models are paid-only and have no free tier. What you see is a real canvas render of your words, colours and photos. That is genuinely free, and it is what the export is.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><h4>Tools</h4><a href="studio.html">Campaign Studio</a><a href="creative-studio.html">Creative Studio</a><a href="brand-voice.html">Brand Voice</a><a href="calendar.html">Content Calendar</a></div>
+      <div><h4>Compare</h4><a href="pricing.html">Pricing</a><a href="predis-ai-alternative.html">Predis.ai alternative</a><a href="ai-ad-copy-generator.html">AI ad copy generator</a><a href="free-ai-marketing-tool.html">Free AI marketing tool</a></div>
+      <div><h4>About</h4><a href="index.html">Home</a><a href="index.html#compare">AdHarbor vs Predis.ai</a><a href="index.html#faq">FAQ</a></div>
+    </div>
+    <p class="disclaimer">Unofficial rebuild — not affiliated with Predis.ai. Stock photos: Unsplash (free licence). Your uploads never leave your browser.</p>
+  </div>
+</footer>
+<script src="adharbor.js"></script>
+<script src="creative.js"></script>
+</body>
+</html>

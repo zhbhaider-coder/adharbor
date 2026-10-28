@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Voice — AdHarbor | Tone, Audience, Banned Words, Hooks</title>
+<meta name="description" content="Set your persistent Brand Voice once — tone, audience, banned words and winning hooks — and AdHarbor applies it to every ad, caption and email it generates. Stored in your browser only.">
+<link rel="canonical" href="https://adharbor.pages.dev/brand-voice">
+<meta property="og:title" content="AdHarbor Brand Voice — Sound Like You, Every Time">
+<meta property="og:description" content="Tone, audience, banned words and winning hooks, saved in your browser and applied to every generation.">
+<meta property="og:url" content="https://adharbor.pages.dev/brand-voice">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d9488'/><text x='50' y='70' font-size='54' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><span class="mark">A</span> AdHarbor</a>
+    <nav class="nav-links">
+      <a href="studio.html">Studio</a>
+      <a href="creative-studio.html">Creative Studio</a>
+      <a href="brand-voice.html" class="on">Brand Voice</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <a class="btn small" href="studio.html" style="margin-left:auto">Open the Studio</a>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <h1>Brand Voice</h1>
+  <p>Set it once. Every kit AdHarbor generates — ad copy, captions, email — will sound like you. Jasper charges $69/seat a month and Copy.ai locks brand voice behind a $1,000/month tier. Here it is free, and it lives only in your browser.</p>
+</div>
+
+<section style="padding-top:24px">
+  <div class="wrap grid2">
+    <div class="panel">
+      <h3>Your voice</h3>
+      <label for="bvName">Brand name</label>
+      <input type="text" id="bvName" placeholder="e.g. Harbor Candles">
+      <label for="bvTagline">Tagline</label>
+      <input type="text" id="bvTagline" placeholder="e.g. Calm, poured by hand">
+      <label for="bvTone">Tone — how should it sound?</label>
+      <select id="bvTone">
+        <option>Friendly and confident</option>
+        <option>Bold and punchy</option>
+        <option>Premium and elegant</option>
+        <option>Playful and funny</option>
+        <option>Calm and trustworthy</option>
+        <option>Urgent and direct</option>
+        <option>Warm and personal</option>
+      </select>
+      <label for="bvAudience">Audience — who is it for?</label>
+      <input type="text" id="bvAudience" placeholder="e.g. Busy mums who buy gifts online">
+      <label for="bvBanned">Banned words — never use these</label>
+      <textarea id="bvBanned" placeholder="e.g. cheap, amazing, revolutionary, best in the world"></textarea>
+      <label for="bvHooks">Hooks that worked before</label>
+      <textarea id="bvHooks" placeholder="e.g. 'Your evenings called. They want the good candle.' — paste lines that got clicks and AdHarbor will reuse their style."></textarea>
+      <div class="row" style="margin-top:14px">
+        <button class="btn" id="bvSave" type="button">Save Brand Voice</button>
+        <button class="btn ghost" id="bvClear" type="button">Clear all</button>
+      </div>
+      <p class="mini" id="bvStatus" style="margin-top:10px"></p>
+    </div>
+    <div>
+      <div class="panel soft">
+        <h3>How it is used</h3>
+        <p>Every generation in the <a href="studio.html" style="text-decoration:underline">Campaign Studio</a> gets your voice appended to the prompt: tone, audience, banned words, winning hooks, brand name and tagline. The model is told to write in that voice and never use the banned words.</p>
+        <p style="margin-top:10px">Nothing is uploaded anywhere. Your Brand Voice is stored in this browser's localStorage — clear your browser data and it is gone, so keep a copy of your hooks somewhere safe if they matter.</p>
+        <h4>What is applied right now</h4>
+        <p id="bvPreview" class="muted" style="white-space:pre-wrap">Nothing saved yet.</p>
+      </div>
+      <div class="panel">
+        <h3>Tips that actually help</h3>
+        <p>· <b>Banned words beat tone.</b> One banned word ("cheap", "amazing") does more for your voice than a paragraph of tone description.</p>
+        <p style="margin-top:8px">· <b>Paste real winners.</b> Two or three hooks that actually got clicks teach the model more than any adjective.</p>
+        <p style="margin-top:8px">· <b>Name the audience, not the demographic.</b> "Busy mums who buy gifts at 11pm" beats "women 25–45".</p>
+        <p style="margin-top:8px">· <b>Regenerate per section.</b> If one block of a kit sounds off, hit its Regenerate button — the rest of the kit stays.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><h4>Tools</h4><a href="studio.html">Campaign Studio</a><a href="creative-studio.html">Creative Studio</a><a href="brand-voice.html">Brand Voice</a><a href="calendar.html">Content Calendar</a></div>
+      <div><h4>Compare</h4><a href="pricing.html">Pricing</a><a href="predis-ai-alternative.html">Predis.ai alternative</a><a href="ai-ad-copy-generator.html">AI ad copy generator</a><a href="free-ai-marketing-tool.html">Free AI marketing tool</a></div>
+      <div><h4>About</h4><a href="index.html">Home</a><a href="index.html#compare">AdHarbor vs Predis.ai</a><a href="index.html#faq">FAQ</a></div>
+    </div>
+    <p class="disclaimer">Unofficial rebuild — not affiliated with Predis.ai. Your Brand Voice never leaves this browser.</p>
+  </div>
+</footer>
+<script src="adharbor.js"></script>
+<script>
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
+  function read(){
+    return { brandName:$('bvName').value.trim(), tagline:$('bvTagline').value.trim(), tone:$('bvTone').value,
+      audience:$('bvAudience').value.trim(), banned:$('bvBanned').value.trim(), hooks:$('bvHooks').value.trim() };
+  }
+  function preview(b){
+    var bits = [];
+    if(b.brandName) bits.push('Brand: ' + b.brandName);
+    if(b.tagline) bits.push('Tagline: ' + b.tagline);
+    if(b.tone) bits.push('Tone: ' + b.tone);
+    if(b.audience) bits.push('Audience: ' + b.audience);
+    if(b.banned) bits.push('Never use: ' + b.banned);
+    if(b.hooks) bits.push('Winning hooks: ' + b.hooks);
+    $('bvPreview').textContent = bits.length ? bits.join('\n') : 'Nothing saved yet.';
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var b = AH.getBrand();
+    $('bvName').value = b.brandName || ''; $('bvTagline').value = b.tagline || '';
+    $('bvTone').value = b.tone || 'Friendly and confident';
+    $('bvAudience').value = b.audience || ''; $('bvBanned').value = b.banned || ''; $('bvHooks').value = b.hooks || '';
+    preview(b);
+    $('bvSave').addEventListener('click', function(){
+      var v = read();
+      if(AH.save(AH.K.brand, v)){ $('bvStatus').textContent = 'Brand Voice saved ✓ — the Studio will use it from now on.'; preview(v); AH.toast('Brand Voice saved'); }
+      else $('bvStatus').textContent = 'Could not save — browser storage is full.';
+    });
+    $('bvClear').addEventListener('click', function(){
+      try { localStorage.removeItem(AH.K.brand); } catch(e){}
+      $('bvName').value=''; $('bvTagline').value=''; $('bvAudience').value=''; $('bvBanned').value=''; $('bvHooks').value='';
+      preview({}); $('bvStatus').textContent = 'Brand Voice cleared.';
+    });
+  });
+})();
+</script>
+</body>
+</html>

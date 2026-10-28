@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign Studio — AdHarbor | One Brief → Ad Copy, Captions, Hashtags, Email</title>
+<meta name="description" content="Enter one brief and generate a full campaign kit: Meta, Google, TikTok and LinkedIn ad copy, social captions, hashtags, email and product description. Free and unlimited with your own Gemini key.">
+<link rel="canonical" href="https://adharbor.pages.dev/studio">
+<meta property="og:title" content="AdHarbor Campaign Studio — One Brief, Full Campaign Kit">
+<meta property="og:description" content="Ad copy, captions, hashtags, email and product description from one brief. Free and unlimited.">
+<meta property="og:url" content="https://adharbor.pages.dev/studio">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d9488'/><text x='50' y='70' font-size='54' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><span class="mark">A</span> AdHarbor</a>
+    <nav class="nav-links">
+      <a href="studio.html" class="on">Studio</a>
+      <a href="creative-studio.html">Creative Studio</a>
+      <a href="brand-voice.html">Brand Voice</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <a class="btn small" href="creative-studio.html" style="margin-left:auto">Creative Studio</a>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <h1>Campaign Studio</h1>
+  <p>One brief in, a full campaign kit out: ad copy for Meta, Google, TikTok and LinkedIn, social captions, hashtags, an email and a product description. Your <a href="brand-voice.html" style="text-decoration:underline">Brand Voice</a> is applied to every word.</p>
+</div>
+
+<section style="padding-top:24px">
+  <div class="wrap grid2-40">
+    <div>
+      <div class="panel">
+        <h3>Your free Gemini API key</h3>
+        <p class="muted">AdHarbor has no server and no account, so generation runs on your own free Gemini key. Get one free at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener" style="text-decoration:underline">Google AI Studio</a> — no card required, free tier covers text generation. Your key is stored <b>only in this browser's localStorage</b> and sent straight to Google; it never touches our servers (there are none).</p>
+        <label for="apiKey">Gemini API key</label>
+        <div class="row">
+          <input type="password" id="apiKey" placeholder="AIza..." autocomplete="off" style="flex:1">
+          <button class="btn small" id="saveKeyBtn" type="button">Save key</button>
+        </div>
+        <p class="mini" id="keyStatus" style="margin-top:8px"></p>
+        <p class="mini">No key yet? You can still fill in the brief below — generation needs the key. <button class="copy-btn" id="testKeyBtn" type="button">Test key</button></p>
+      </div>
+
+      <div class="panel">
+        <h3>The brief</h3>
+        <label for="product">Product / service *</label>
+        <input type="text" id="product" placeholder="e.g. Hand-poured soy candles, 40-hour burn, $18">
+        <label for="audience">Audience *</label>
+        <input type="text" id="audience" placeholder="e.g. Women 25–45 who buy self-care gifts online">
+        <label for="offer">Offer / hook</label>
+        <input type="text" id="offer" placeholder="e.g. 20% off this week, free shipping over $35">
+        <label for="tone">Tone</label>
+        <select id="tone">
+          <option value="">Use my Brand Voice tone</option>
+          <option>Bold and punchy</option>
+          <option>Friendly and warm</option>
+          <option>Premium and elegant</option>
+          <option>Playful and funny</option>
+          <option>Urgent and direct</option>
+          <option>Calm and trustworthy</option>
+        </select>
+        <label for="goal">Main goal</label>
+        <select id="goal">
+          <option>Drive sales</option>
+          <option>Get clicks to the website</option>
+          <option>Grow social followers</option>
+          <option>Launch a new product</option>
+          <option>Clear old stock</option>
+          <option>Build an email list</option>
+        </select>
+        <label for="extra">Anything else? (optional)</label>
+        <textarea id="extra" placeholder="e.g. Mention the lavender scent. Avoid the word 'cheap'."></textarea>
+        <div class="row" style="margin-top:14px">
+          <button class="btn" id="genBtn" type="button">Generate campaign kit</button>
+          <button class="btn ghost" id="sampleBtn" type="button">Fill sample brief</button>
+        </div>
+        <p class="mini" id="genStatus" style="margin-top:10px"></p>
+        <p class="mini" id="voiceNote" style="margin-top:6px"></p>
+      </div>
+
+      <div class="panel soft">
+        <h3>Saved kits</h3>
+        <p class="muted">Kits you save live in this browser. Send any kit to the <a href="calendar.html" style="text-decoration:underline">calendar</a> to plan it, or open it in the <a href="creative-studio.html" style="text-decoration:underline">Creative Studio</a>.</p>
+        <div id="kitList"><p class="muted">No saved kits yet.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel">
+        <div class="row between">
+          <h3 style="margin:0">Your campaign kit</h3>
+          <span class="status" id="kitStatus">No kit yet</span>
+        </div>
+        <p class="muted">Every block has its own copy button. Regenerate any single section without redoing the whole kit.</p>
+        <div id="kitOut">
+          <p class="muted" style="padding:18px 0">Fill in the brief and press <b>Generate campaign kit</b>. Your first kit appears here — Meta ads, Google ads, TikTok hooks, LinkedIn posts, captions, hashtags, an email and a product description.</p>
+        </div>
+        <div class="row" id="kitActions" style="display:none;margin-top:6px">
+          <button class="btn small" id="saveKitBtn" type="button">Save kit</button>
+          <button class="btn ghost small" id="copyAllBtn" type="button">Copy whole kit</button>
+          <button class="btn ghost small" id="sendCalBtn" type="button">Send to calendar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><h4>Tools</h4><a href="studio.html">Campaign Studio</a><a href="creative-studio.html">Creative Studio</a><a href="brand-voice.html">Brand Voice</a><a href="calendar.html">Content Calendar</a></div>
+      <div><h4>Compare</h4><a href="pricing.html">Pricing</a><a href="predis-ai-alternative.html">Predis.ai alternative</a><a href="ai-ad-copy-generator.html">AI ad copy generator</a><a href="free-ai-marketing-tool.html">Free AI marketing tool</a></div>
+      <div><h4>About</h4><a href="index.html">Home</a><a href="index.html#compare">AdHarbor vs Predis.ai</a><a href="index.html#faq">FAQ</a></div>
+    </div>
+    <p class="disclaimer">Unofficial rebuild — not affiliated with Predis.ai. Your API key never leaves your browser except to call Google's Gemini API directly.</p>
+  </div>
+</footer>
+<script src="adharbor.js"></script>
+<script src="studio.js"></script>
+</body>
+</html>

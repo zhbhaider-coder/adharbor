@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Calendar — AdHarbor | Plan Posts, Export CSV, ICS &amp; PNG</title>
+<meta name="description" content="Plan your posts on a calendar from saved campaign kits, then export captions as CSV, the calendar as an ICS file and creatives as PNGs. The honest substitute for auto-posting — free, no account.">
+<link rel="canonical" href="https://adharbor.pages.dev/calendar">
+<meta property="og:title" content="AdHarbor Content Calendar — Plan & Export">
+<meta property="og:description" content="Plan posts from saved kits. Export CSV captions, ICS calendar and PNG creatives. Free, no account.">
+<meta property="og:url" content="https://adharbor.pages.dev/calendar">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d9488'/><text x='50' y='70' font-size='54' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'>A</text></svg>">
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><span class="mark">A</span> AdHarbor</a>
+    <nav class="nav-links">
+      <a href="studio.html">Studio</a>
+      <a href="creative-studio.html">Creative Studio</a>
+      <a href="brand-voice.html">Brand Voice</a>
+      <a href="calendar.html" class="on">Calendar</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <a class="btn small" href="studio.html" style="margin-left:auto">Open the Studio</a>
+  </div>
+</header>
+
+<div class="wrap page-head">
+  <h1>Content Calendar</h1>
+  <p>Plan posts from your saved kits, then export everything at once. AdHarbor does not auto-post — that needs a server and account connections, and this app has neither. So it gives you the next best thing, honestly: a plan you can export and post from your phone in seconds.</p>
+</div>
+
+<section style="padding-top:24px">
+  <div class="wrap">
+    <div class="note"><b>How posting works here:</b> pick a day, attach a kit (or write a caption), and export. Captions go out as a CSV you can open anywhere, the plan as an ICS file you can import into Google Calendar, and creatives as PNG files. Then post from your phone, or paste the CSV into Buffer or Meta Business Suite. Predis.ai caps auto-posting at ~2–3 posts a day and has no auto-posting at all on its $32/month Core plan — AdHarbor's export has no cap.</div>
+
+    <div class="cal-head">
+      <button class="btn ghost small" id="prevMonth" type="button">← Previous</button>
+      <h3 id="calTitle">Month</h3>
+      <button class="btn ghost small" id="nextMonth" type="button">Next →</button>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+
+    <div class="grid2" style="margin-top:18px">
+      <div class="panel">
+        <h3 id="dayTitle">Pick a day</h3>
+        <p class="muted">Click any day above to plan it. The caption, hashtags and creative come from your saved kits — or write them by hand.</p>
+        <div id="dayForm" style="display:none">
+          <label for="dPlatform">Platform</label>
+          <select id="dPlatform">
+            <option>Instagram</option><option>Facebook</option><option>TikTok</option><option>LinkedIn</option><option>X (Twitter)</option><option>Pinterest</option><option>Google Ads</option><option>Email</option>
+          </select>
+          <label for="dKit">Use a saved kit</label>
+          <select id="dKit"><option value="">— write it by hand —</option></select>
+          <label for="dCaption">Caption / post text</label>
+          <textarea id="dCaption" rows="4"></textarea>
+          <label for="dTags">Hashtags</label>
+          <input type="text" id="dTags" placeholder="#your #tags #here">
+          <label for="dTime">Time</label>
+          <input type="text" id="dTime" value="19:00">
+          <div id="dCreativeWrap" style="display:none;margin-top:10px">
+            <label>Attached creative</label>
+            <p class="mini" id="dCreativeLabel"></p>
+            <img id="dCreativeImg" alt="" style="max-width:180px;border:1px solid var(--line);border-radius:10px;display:block">
+          </div>
+          <div class="row" style="margin-top:14px">
+            <button class="btn small" id="dSave" type="button">Save day</button>
+            <button class="btn ghost small" id="dClear" type="button">Clear day</button>
+          </div>
+          <p class="mini" id="dStatus" style="margin-top:8px"></p>
+        </div>
+      </div>
+      <div class="panel soft">
+        <h3>Export everything</h3>
+        <p>One click each. Exports cover the month you are viewing.</p>
+        <div class="row" style="margin-top:12px">
+          <button class="btn small" id="expCsv" type="button">Captions as CSV</button>
+          <button class="btn small" id="expIcs" type="button">Calendar as ICS</button>
+          <button class="btn small" id="expPng" type="button">Creatives as PNGs</button>
+        </div>
+        <p class="mini" id="expStatus" style="margin-top:10px"></p>
+        <h4>Your saved kits</h4>
+        <div id="calKitList"><p class="muted">No saved kits yet — generate one in the <a href="studio.html" style="text-decoration:underline">Studio</a>.</p></div>
+        <h4>Planned this month</h4>
+        <p id="monthSummary" class="muted">Nothing planned yet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><h4>Tools</h4><a href="studio.html">Campaign Studio</a><a href="creative-studio.html">Creative Studio</a><a href="brand-voice.html">Brand Voice</a><a href="calendar.html">Content Calendar</a></div>
+      <div><h4>Compare</h4><a href="pricing.html">Pricing</a><a href="predis-ai-alternative.html">Predis.ai alternative</a><a href="ai-ad-copy-generator.html">AI ad copy generator</a><a href="free-ai-marketing-tool.html">Free AI marketing tool</a></div>
+      <div><h4>About</h4><a href="index.html">Home</a><a href="index.html#compare">AdHarbor vs Predis.ai</a><a href="index.html#faq">FAQ</a></div>
+    </div>
+    <p class="disclaimer">Unofficial rebuild — not affiliated with Predis.ai. AdHarbor does not auto-post to social accounts — it plans and exports, and you post. Plans live only in this browser.</p>
+  </div>
+</footer>
+<script src="adharbor.js"></script>
+<script src="calendar.js"></script>
+</body>
+</html>
